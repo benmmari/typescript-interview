@@ -105,7 +105,7 @@ const getValue = (creditReport: CreditReport): number => {
   let value;
   if (paymentHistory.length == 0 && creditUtilizationPercentage == 0) {    
     value = 880;
-  } else if (creditUtilizationPercentage < 0.3) {
+  } else if (creditUtilizationPercentage <= 0.3) {
     value = 999;
   } else if (creditUtilizationPercentage > 0.3 && creditUtilizationPercentage <= 0.5) {
     value = 960;
