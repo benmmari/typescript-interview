@@ -17,7 +17,7 @@ export const getCreditScore = (creditReport: CreditReport): CreditScore => {
 
 /**
  * @param value value to calculate percentage
- * @param total total value
+ * @param total total
  * @returns percentage with 2 decimal places. E.g. 0.25
  */
 const calculatePercentage = (value: number, total: number) => {
@@ -25,8 +25,7 @@ const calculatePercentage = (value: number, total: number) => {
 };
 
 /**
- * @param value value to calculate percentage
- * @param total total value
+ * @param creditReport creditReport
  * @returns percentage with 2 decimal places. E.g. 0.25
  */
 const overDueInvoicePercentage = (creditReport: CreditReport): number  => {
@@ -61,11 +60,10 @@ const unpaidInvoicesImpact = (unpaidInvoicesPercentage: number, value: number): 
 
 /**
  * @param value value
+ * @param country country
  * @returns category 
  */
 const getCategory = (value: number, country: Country = "UK"): Category => {
-  // {min:990 category: "excellen"}
-
   if (country == "UK") {
     if (value <=560) {
       return "very poor";
@@ -96,7 +94,6 @@ const getCategory = (value: number, country: Country = "UK"): Category => {
 
   throw new Error("invalid input");
 };
-
 
 /**
  * @param value value
