@@ -1,7 +1,7 @@
 import { Category, Country, CreditReport, CreditScore } from "./types";
 /**
  *
- * @param c the credit report for a user
+ * @param creditReport the credit report for a user
  * @returns a credit score with a value and category
  */
 export const getCreditScore = (creditReport: CreditReport): CreditScore => {
@@ -16,7 +16,7 @@ export const getCreditScore = (creditReport: CreditReport): CreditScore => {
 };
 
 /**
- * @param value  value to calculate percentage
+ * @param value value to calculate percentage
  * @param total total value
  * @returns percentage with 2 decimal places. E.g. 0.25
  */
@@ -29,11 +29,11 @@ const calculatePercentage = (value: number, total: number) => {
  * @param total total value
  * @returns percentage with 2 decimal places. E.g. 0.25
  */
-const overDueInvoicePercentage = (cr: CreditReport): number  => {
-  const totalInvoices = cr.paymentHistory.length;
+const overDueInvoicePercentage = (creditReport: CreditReport): number  => {
+  const totalInvoices = creditReport.paymentHistory.length;
   let unpaidInvoices = 0;
 
-  for (const invoice of cr.paymentHistory) {
+  for (const invoice of creditReport.paymentHistory) {
     if (invoice.status == "UNPAID" && invoice.dueDate < new Date()) {
       unpaidInvoices++;
     }
@@ -102,19 +102,19 @@ const getCategory = (value: number, country: Country = "UK"): Category => {
  * @param value value
  * @returns category 
  */
-const getValue = (c: CreditReport): number => {
-  const x = c.creditUtilisationPercentage;
-  const paymentHistory = c.paymentHistory;
+const getValue = (creditReport: CreditReport): number => {
+  const creditUtilizationPercentage = creditReport.creditUtilisationPercentage;
+  const paymentHistory = creditReport.paymentHistory;
   let value;
-  if (paymentHistory.length == 0 && x == 0) {    
+  if (paymentHistory.length == 0 && creditUtilizationPercentage == 0) {    
     value = 880;
-  } else if (x < 0.3) {
+  } else if (creditUtilizationPercentage < 0.3) {
     value = 999;
-  } else if (x > 0.3 && x <= 0.5) {
+  } else if (creditUtilizationPercentage > 0.3 && creditUtilizationPercentage <= 0.5) {
     value = 960;
-  } else if (x > 0.5 && x <= 0.7) {
+  } else if (creditUtilizationPercentage > 0.5 && creditUtilizationPercentage <= 0.7) {
     value = 880;
-  } else if (x > 0.7 && x <= 0.9) {
+  } else if (creditUtilizationPercentage > 0.7 && creditUtilizationPercentage <= 0.9) {
     value = 720;
   } else {
     value = 560;
