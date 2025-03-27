@@ -130,7 +130,7 @@ describe("getCreditScore", () => {
     expect(creditScore.category).toBe("excellent");
   });
 
-  it("Country: US - should return 960(good) if the credit utilisation is between 30% and 50%", () => {
+  it("Country: US - should return 960(excellent) if the credit utilisation is between 30% and 50%", () => {
     const creditReport = {
       paymentHistory: [],
       creditUtilisationPercentage: 0.4,
@@ -152,7 +152,7 @@ describe("getCreditScore", () => {
     expect(creditScore.category).toBe("excellent");
   });
 
-  it("Country: US - should return 880(fair) if the credit utilisation is 0% and there is no payment history ", () => {
+  it("Country: US - should return 880(excellent) if the credit utilisation is 0% and there is no payment history ", () => {
     const creditReport = {
       paymentHistory: [],
       creditUtilisationPercentage: 0,
