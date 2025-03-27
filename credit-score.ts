@@ -96,8 +96,8 @@ const getCategory = (value: number, country: Country = "UK"): Category => {
 };
 
 /**
- * @param value value
- * @returns category 
+ * @param creditReport Credit Report
+ * @returns credit report value 
  */
 const getValue = (creditReport: CreditReport): number => {
   const creditUtilizationPercentage = creditReport.creditUtilisationPercentage;
